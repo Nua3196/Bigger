@@ -5,7 +5,7 @@ from .serializers import NoticeSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from background_task.models import Task
-from getnotice import save_notices
+from .tasks import call_notices
 from datetime import datetime
 
 #여러개
@@ -22,7 +22,7 @@ class NoticeAPI(generics.RetrieveUpdateAPIView):
 @api_view(['GET'])
 def UpdateNoticesAPI(request):
     Notice.objects.all().delete()
-    save_notices()
+    call_notices()
     Update.objects.create(how="hand")
     return Response("updated notices list")
 
