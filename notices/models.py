@@ -9,5 +9,6 @@ class Notice(models.Model):
     belt = models.CharField(max_length=20)
     date = models.CharField(max_length=15)
 
-class Updates(models.Model):
+class Update(models.Model):
     when = models.DateTimeField(default=timezone.now)
+    how = models.CharField(max_length=20)
